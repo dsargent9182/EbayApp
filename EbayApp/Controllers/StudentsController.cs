@@ -14,10 +14,12 @@ namespace EbayApp.Controllers
 	public class StudentsController : Controller
 	{
 		private readonly SchoolContext _context;
+		private readonly ILogger _logger;
 
-		public StudentsController(SchoolContext context)
+		public StudentsController(SchoolContext context, ILogger<StudentsController> logger)
 		{
 			_context = context;
+			_logger = logger;
 		}
 
 		// GET: Students
@@ -69,7 +71,8 @@ namespace EbayApp.Controllers
 			}
 			catch(DataException ex)
 			{
-				
+				_logger.LogInformation(ex.Message);
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
 			}
 
 
