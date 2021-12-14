@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbayApp", "EbayApp\EbayApp.csproj", "{0EA4D6B7-53BE-4EFC-A0BC-1796EA945954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbayAPI", "EbayAPI\EbayAPI.csproj", "{B0BCEC66-4671-4221-8BB7-78B6F1DD172D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbayAPI", "EbayAPI\EbayAPI.csproj", "{B0BCEC66-4671-4221-8BB7-78B6F1DD172D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScaperMicroservice", "..\..\ScaperMicroservice\ScaperMicroservice.csproj", "{4D184B36-0B82-47D2-89C8-B51EE20168B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterMicro", "TesterMicro\TesterMicro.csproj", "{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{B0BCEC66-4671-4221-8BB7-78B6F1DD172D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0BCEC66-4671-4221-8BB7-78B6F1DD172D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0BCEC66-4671-4221-8BB7-78B6F1DD172D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D184B36-0B82-47D2-89C8-B51EE20168B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D184B36-0B82-47D2-89C8-B51EE20168B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D184B36-0B82-47D2-89C8-B51EE20168B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D184B36-0B82-47D2-89C8-B51EE20168B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
