@@ -33,14 +33,18 @@ namespace EbayApp.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				//return NotFound();
+				ModelState.AddModelError("", "Unable to get student details. Try again, and if the problem persists, see your system administrator.");
+				return View(new Student()); 
 			}
 
 			var student = await _context.Students
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (student == null)
 			{
-				return NotFound();
+				//return NotFound();
+				ModelState.AddModelError("", "Unable to get student details. Try again, and if the problem persists, see your system administrator.");
+				return View(new Student());
 			}
 
 			return View(student);

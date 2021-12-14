@@ -11,6 +11,10 @@ namespace EbayApp.Data
 			builder.ToTable("Course");
 			builder.Property(e => e.CourseId)
 				.HasDefaultValueSql("NEWSEQUENTIALID()");
+			builder.Property(e => e.Created)
+			.HasDefaultValueSql("getdate()")
+			.IsRequired()
+			.Metadata.SetAfterSaveBehavior(Microsoft.EntityFrameworkCore.Metadata.PropertySaveBehavior.Ignore);
 			
 		}
 	}

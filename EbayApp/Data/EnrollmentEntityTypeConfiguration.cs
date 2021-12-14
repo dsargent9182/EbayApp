@@ -11,7 +11,9 @@ namespace EbayApp.Data
 			builder.ToTable("Enrollment");
 			builder.Property(e => e.EnrollmentId)
 				.HasDefaultValueSql("NEWSEQUENTIALID()");
-			
+			builder.Property(e => e.Created)
+			.HasDefaultValueSql("getdate()")
+			.IsRequired();
 		}
 	}
 }
