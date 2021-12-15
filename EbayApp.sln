@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EbayAPI", "EbayAPI\EbayAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScaperMicroservice", "..\..\ScaperMicroservice\ScaperMicroservice.csproj", "{4D184B36-0B82-47D2-89C8-B51EE20168B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterMicro", "TesterMicro\TesterMicro.csproj", "{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesterMicro", "TesterMicro\TesterMicro.csproj", "{18CFFCCC-1CCA-4285-A347-0BF087ED1C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
