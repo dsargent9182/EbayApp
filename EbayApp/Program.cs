@@ -1,4 +1,6 @@
+using EbayApp.Context.Dapper;
 using EbayApp.Data;
+using EbayApp.DataLayer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,13 +11,25 @@ builder.Logging.AddConsole();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string ebayConn = builder.Configuration.GetConnectionString("EbayConnection");
+
+//builder.Configuration.get
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<WatchListContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<SchoolContext>(options =>
     options.UseSqlServer(connectionString)
     .LogTo(Console.WriteLine,LogLevel.Information));
+
+
+builder.Services.AddSingleton<DapperContext>( c => new DapperContext(ebayConn));
+
+builder.Services.AddScoped<IEbayRepository, EbayRepository>();
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
