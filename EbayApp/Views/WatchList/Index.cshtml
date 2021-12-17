@@ -1,0 +1,69 @@
+﻿@model IEnumerable<EbayApp.DataLayer.WatchList>
+@{
+	Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
+}
+
+<h1 class="p-3">Seller Watch List</h1>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.EbayId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SoldCount)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.TotalSold)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SoldAmount)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EbayUser)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LastDateSold)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.EbayId)
+				</td>
+				<td>
+					<a href="https://www.ebay.com/p/@item.EbayId">@item.Title</a>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SoldCount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TotalSold)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SoldAmount)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EbayUser)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastDateSold)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
