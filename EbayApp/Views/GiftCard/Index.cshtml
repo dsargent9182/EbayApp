@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EbayApp.DataLayer.GiftCard>
+@{
+	Layout = "~/Views/Shared/AdminLTE/_Layout.cshtml";
+}
+
+<h1 class="p-3">Gift Cards</h1>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Store)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Number)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.PIN)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Amount)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Balance)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CreatedDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DateM)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Store)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Number)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PIN)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Balance)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DateM)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
