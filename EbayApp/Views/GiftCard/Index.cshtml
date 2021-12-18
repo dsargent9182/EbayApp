@@ -30,6 +30,9 @@
 			<th>
 				@Html.DisplayNameFor(model => model.DateM)
 			</th>
+			<th>
+
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -46,6 +49,10 @@
 					@Html.DisplayFor(modelItem => item.PIN)
 				</td>
 				<td>
+					@Html.DisplayFor(modelItem => item.Amount)
+				</td>
+				
+				<td>
 					@Html.DisplayFor(modelItem => item.Balance)
 				</td>
 				<td>
@@ -53,6 +60,9 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.DateM)
+				</td>
+				<td>
+					@Html.ActionLink("Edit","Edit","GiftCard",new {Id = item.Id})
 				</td>
 			</tr>
 		}
