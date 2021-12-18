@@ -2,7 +2,7 @@
 
 namespace EbayApp.DataLayer
 {
-	public class Messages
+	public class Message
 	{
 		public int Id { get; set; }
 

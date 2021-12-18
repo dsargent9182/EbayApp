@@ -8,7 +8,7 @@
 
 		public Task UpdateOrCreateGiftCardAsync(GiftCard gift);
 
-		public Task<IEnumerable<Message>> GetMessagesAsync();
+		public Task<IEnumerable<Message>> GetMessagesAsync(string itemId, string buyerUserName);
 
 	}
 }
