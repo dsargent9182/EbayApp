@@ -46,5 +46,17 @@ namespace EbayApp.DataLayer
 				var obj = await connection.ExecuteScalarAsync("GiftCard_Update", values, commandType: System.Data.CommandType.StoredProcedure);
 			}
 		}
+
+		public async Task<IEnumerable<Message>> GetMessagesAsync(string itemId, string buyerUserName)
+		{
+			IEnumerable<Message> messages = new List<Message>();
+
+			using (var connection = _context.CreateConnection())
+			{
+				messages = await connection.QueryAsync<Message>("Message_Get", null, commandType: System.Data.CommandType.StoredProcedure);
+			}
+			return messages;
+		}
+
 	}
 }

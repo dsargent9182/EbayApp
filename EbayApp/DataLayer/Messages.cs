@@ -1,4 +1,6 @@
-﻿namespace EbayApp.DataLayer
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EbayApp.DataLayer
 {
 	public class Messages
 	{
@@ -20,6 +22,7 @@
 
 		public string ItemTitle { get; set; }
 
+		[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
 		public DateTime Received { get; set; }
 
 		public string MessageId { get; set; }
