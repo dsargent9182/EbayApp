@@ -1,6 +1,6 @@
-using EbayApp.Context.Dapper;
+using Ebay.Context.Dapper;
 using EbayApp.Data;
-using EbayApp.DataLayer;
+using Ebay.DataLayer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
