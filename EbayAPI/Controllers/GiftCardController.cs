@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ebay.DataLayer;
+using MassTransit;
+
 namespace EbayAPI.Controllers
 {
 	[Route("[controller]")]
@@ -9,11 +11,13 @@ namespace EbayAPI.Controllers
 		private IEbayRepository _ebayRepository;
 		private ILogger _logger;
 		private Ebay.Util.ILoggerManager _loggerManager;
-		public GiftCardController(IEbayRepository ebayRepository, ILogger<GiftCard> logger, Ebay.Util.ILoggerManager loggerManager)
+		private IBus _bus;
+		public GiftCardController(IEbayRepository ebayRepository, ILogger<GiftCard> logger, Ebay.Util.ILoggerManager loggerManager,IBus bus)
 		{
 			_ebayRepository = ebayRepository;
 			_logger = logger;
 			_loggerManager = loggerManager;
+			_bus = bus;
 		}
 		[HttpGet]
 		public async Task<IActionResult> Get()
@@ -34,9 +38,10 @@ namespace EbayAPI.Controllers
 
 		// GET api/<GiftCardController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<IActionResult> Get(int id)
 		{
-			return "value";
+			await _bus.Publish<Ebay.MicroService.Message>(new Ebay.MicroService.Message { Text = "hello from api" });
+			return Ok();
 		}
 
 		// POST api/<GiftCardController>

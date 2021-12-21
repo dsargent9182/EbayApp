@@ -3,6 +3,7 @@ using Dapper;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
+using W = Ebay.MicroService.WatchList;
 
 namespace Ebay.DataLayer
 {
@@ -14,28 +15,28 @@ namespace Ebay.DataLayer
 			_context = context;
 		}
 
-		public async Task<IEnumerable<GiftCard>> GetGiftCardsAsync(int? Id)
+		public async Task<IEnumerable<GiftCard>> GetGiftCardsAsync(int? id)
 		{
 			IEnumerable<GiftCard> giftCards = new List<GiftCard>();
 			using (var connection = _context.CreateConnection())
 			{
 				
-				giftCards = await connection.QueryAsync<GiftCard>("GiftCard_Get", new {Id = Id }, commandType: System.Data.CommandType.StoredProcedure);
+				giftCards = await connection.QueryAsync<GiftCard>("GiftCard_Get", new { Id = id }, commandType: System.Data.CommandType.StoredProcedure);
 			}
 			return giftCards;
 		}
 
-		public async Task<IEnumerable<WatchList>> GetWatchListAsync(DateTime? dateToRun)
+		public async Task<IEnumerable<W.Model.WatchList>> GetWatchListAsync(DateTime? dateToRun)
 		{
 			object values = null;
-			IEnumerable<WatchList> watchLists = new List<WatchList>();
+			IEnumerable<W.Model.WatchList> watchLists = new List<W.Model.WatchList>();
 
 			if (dateToRun.HasValue)
 				values = new { end = dateToRun };
 
 			using (var connection = _context.CreateConnection())
 			{
-				watchLists = await connection.QueryAsync<WatchList>("SnipeList_Get", values, commandType: System.Data.CommandType.StoredProcedure);
+				watchLists = await connection.QueryAsync<W.Model.WatchList> ("SnipeList_Get", values, commandType: System.Data.CommandType.StoredProcedure);
 			}
 			return watchLists;
 		}

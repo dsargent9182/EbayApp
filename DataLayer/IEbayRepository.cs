@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using W = Ebay.MicroService.WatchList;
 
 namespace Ebay.DataLayer
 {
 	public interface IEbayRepository
 	{
-		public Task<IEnumerable<WatchList>> GetWatchListAsync(DateTime? dateToRun);
+		public Task<IEnumerable<W.Model.WatchList>> GetWatchListAsync(DateTime? dateToRun);
 
 		public Task<IEnumerable<GiftCard>> GetGiftCardsAsync(int? Id);
 

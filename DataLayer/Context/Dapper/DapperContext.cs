@@ -13,7 +13,7 @@ namespace Ebay.Context.Dapper
 
 		public IDbConnection CreateConnection() 
 		{
-			var conn = new SqlConnection(_connectionString);
+			using var conn = new SqlConnection(_connectionString);
 			
 			return conn;
 		} 
