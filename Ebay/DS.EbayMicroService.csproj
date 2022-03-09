@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>dotnet-Ebay-15BB3437-FFE3-4E49-BD89-9A3695E0BC02</UserSecretsId>
+    <RootNamespace>Ebay.MicroService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.14" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Config\DS.Lib.Configuration.csproj" />
+    <ProjectReference Include="..\DS.Infrastructure\DS.Infrastructure.csproj" />
+    <ProjectReference Include="..\DS.Lib.Logger\DS.Lib.Logger.csproj" />
+  </ItemGroup>
+</Project>
