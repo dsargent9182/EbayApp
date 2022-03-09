@@ -1,6 +1,7 @@
 using MassTransit;
 using DS.Lib.Logger;
 using DS.EbayAPI.BizLayer;
+using DS.Infrastructure.MicroService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ var section = builder.Configuration.GetSection("RabbitMQ");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IClient, RabbitMQClient>();
 builder.Services.AddSingleton<ISDK,SDK>();
 builder.Services.AddSingleton<IEbayService,EbayService>();
 builder.Services.AddSingleton<ILoggerManager>(new Log4NetManager(fileName));

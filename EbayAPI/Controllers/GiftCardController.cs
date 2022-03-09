@@ -8,7 +8,6 @@ namespace DS.EbayAPI.Controllers
 	[ApiController]
 	public class GiftCardController : ControllerBase
 	{
-
 		private readonly IEbayService _ebayService;
 		private readonly ILoggerManager _loggerManager;
 		

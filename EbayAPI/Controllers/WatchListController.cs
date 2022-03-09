@@ -23,7 +23,7 @@ namespace EbayAPI.Controllers
 			try
 			{
 				
-				var resp = await _ebayService.GetWatchList(string.Empty);
+				var resp = await _ebayService.GetWatchList(null);
 				
 				return Results.Ok(resp);
 
@@ -31,7 +31,7 @@ namespace EbayAPI.Controllers
 			catch(Exception ex)
 			{
 				_logger.LogError(ex.Message);
-				return Results.Problem("Unable to get watchlist. Try again","CoolInstance",500,"MessageTimeOut","PoopType");
+				return Results.Problem("Unable to get watchlist. Try again",null,500,"MessageTimeOut");
 			}
 		}
 	}

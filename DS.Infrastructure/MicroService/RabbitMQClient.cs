@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DS.Infrastructure.MicroService
 {
-	public class RabbitMQClient
+	public class RabbitMQClient : IClient
 	{
 		private readonly IBus _bus;
 		public RabbitMQClient(IBus bus)

@@ -8,10 +8,10 @@ namespace DS.EbayAPI.BizLayer
 {
 	public class EbayService : IEbayService
 	{
-		private readonly SDK _sdk;
+		private readonly ISDK _sdk;
 		private readonly IMapper _mapper;
 
-		public EbayService(SDK sdk, IMapper mapper)
+		public EbayService(ISDK sdk, IMapper mapper)
 		{
 			_sdk = sdk;
 			_mapper = mapper;
