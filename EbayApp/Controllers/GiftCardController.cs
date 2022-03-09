@@ -1,27 +1,28 @@
-﻿using Ebay.DataLayer;
+﻿using DS.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EbayApp.Controllers
 {
 	public class GiftCardController : Controller
 	{
-		private IEbayRepository _ebayRepository;
-		public GiftCardController(IEbayRepository ebayRepository)
+		//private IEbayRepository _ebayRepository;
+		public GiftCardController(/*IEbayRepository ebayRepository*/)
 		{
-			_ebayRepository = ebayRepository;
+			//_ebayRepository = ebayRepository;
 		}
 		public async Task<IActionResult> Index()
 		{
-			var result = await _ebayRepository.GetGiftCardsAsync(null);
+			//Get this from the API 
+			//var result = await _ebayRepository.GetGiftCardsAsync(null);
 
-			return View(result);
+			return View(/*result*/);
 		}
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var result = await _ebayRepository.GetGiftCardsAsync(Id);
+			//var result = await _ebayRepository.GetGiftCardsAsync(Id);
 
-			return View(result.FirstOrDefault());
+			return View(/*result.FirstOrDefault()*/);
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -32,7 +33,7 @@ namespace EbayApp.Controllers
 
 			if(ModelState.IsValid)
 			{
-				await _ebayRepository.UpdateOrCreateGiftCardAsync(giftCard);
+				//await _ebayRepository.UpdateOrCreateGiftCardAsync(giftCard);
 				return RedirectToAction("Index");
 			}
 

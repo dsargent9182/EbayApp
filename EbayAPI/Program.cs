@@ -1,8 +1,6 @@
-using Ebay.Context.Dapper;
-using Ebay.DataLayer;
-using Ebay.Util;
 using MassTransit;
-
+using DS.Lib.Logger;
+using DS.EbayAPI.BizLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +10,7 @@ builder.Logging.AddConsole();
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 string ebayConn = builder.Configuration.GetConnectionString("EbayConnection");
 string fileName = builder.Configuration.GetSection("Log4Net")["FileName"];
@@ -21,14 +20,9 @@ var section = builder.Configuration.GetSection("RabbitMQ");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddSingleton<DapperContext>(new DapperContext(ebayConn));
-builder.Services.AddScoped<IEbayRepository, EbayRepository>();
-builder.Services.AddSingleton<ILoggerManager>(new LoggerManager(fileName));
-builder.Services.AddSingleton<Ebay.Messaging.Client.IClient, Ebay.Messaging.Client.Client>();
-builder.Services.AddSingleton<Ebay.Messaging.SDK.WatchList>();
-
-
+builder.Services.AddSingleton<ISDK,SDK>();
+builder.Services.AddSingleton<IEbayService,EbayService>();
+builder.Services.AddSingleton<ILoggerManager>(new Log4NetManager(fileName));
 
 builder.Services.AddMassTransit(x =>
 {
@@ -51,9 +45,16 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+	app.UseCors(builder =>
+		builder.WithOrigins("http://127.0.0.1:5500"));
+}
+else
+{
+	//Turn this on if not in development
+	//This causes issues with CORS for fetch api
+	app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ebay.Config
+namespace Lib.Configuration
 {
 	public class RabbitMQOptions
 	{

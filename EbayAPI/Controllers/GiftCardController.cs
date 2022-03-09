@@ -1,36 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ebay.DataLayer;
-using MassTransit;
+using DS.EbayAPI.BizLayer;
+using DS.Lib.Logger;
 
-namespace EbayAPI.Controllers
+namespace DS.EbayAPI.Controllers
 {
 	[Route("[controller]")]
 	[ApiController]
 	public class GiftCardController : ControllerBase
 	{
-		private IEbayRepository _ebayRepository;
-		private ILogger _logger;
-		private Ebay.Util.ILoggerManager _loggerManager;
-		private IBus _bus;
-		public GiftCardController(IEbayRepository ebayRepository, ILogger<GiftCard> logger, Ebay.Util.ILoggerManager loggerManager,IBus bus)
+
+		private readonly IEbayService _ebayService;
+		private readonly ILoggerManager _loggerManager;
+		
+		public GiftCardController(IEbayService ebayService, ILoggerManager loggerManager)
 		{
-			_ebayRepository = ebayRepository;
-			_logger = logger;
 			_loggerManager = loggerManager;
-			_bus = bus;
+			_ebayService = ebayService;
 		}
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
 			try
 			{
-				var giftCards = await _ebayRepository.GetGiftCardsAsync(null);
+				IEnumerable<Dto.GiftCardDto> giftCardDto = await _ebayService.GetGiftCards(null);
 				_loggerManager.LogInfo("[Success] Gift Cards returned");
-				return Ok(giftCards);
+
+				return Ok(giftCardDto);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex.Message);
 				_loggerManager.LogInfo(ex.Message);
 				return StatusCode(500, ex.Message);
 			}
@@ -40,7 +38,7 @@ namespace EbayAPI.Controllers
 		[HttpGet("{id}")]
 		public async Task<IActionResult> Get(int id)
 		{
-			await _bus.Publish<Ebay.MicroService.Message>(new Ebay.MicroService.Message { Text = "hello from api" });
+			//await _bus.Publish<Ebay.MicroService.Message>(new Ebay.MicroService.Message { Text = "hello from api" });
 			return Ok();
 		}
 

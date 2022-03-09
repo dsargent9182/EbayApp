@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DS.Domain.Contracts.WatchList;
+using DS.Domain.Models;
+using DS.EbayAPI.BizLayer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using C = Ebay.Messaging.Client;
-using Ebay.DataLayer;
-using W = Ebay.MicroService.WatchList;
-using MassTransit;
-using Ebay.Messaging.Client;
+
 
 namespace EbayAPI.Controllers
 {
@@ -13,30 +12,25 @@ namespace EbayAPI.Controllers
 	public class WatchListController : ControllerBase
 	{
 		private readonly ILogger _logger;
-		private readonly Ebay.Messaging.SDK.WatchList _watchList;
-		public WatchListController(ILogger<WatchList> logger,Ebay.Messaging.SDK.WatchList watchList)
+		private readonly IEbayService _ebayService;
+		public WatchListController(ILogger<WatchList> logger, IEbayService ebayService)
 		{
 			_logger = logger;
-			_watchList = watchList;
+			_ebayService = ebayService;
 		}
-		[HttpGet(Name = "GetWatchList")]
 		public async Task<IResult> Get()
 		{
 			try
 			{
-				W.WatchListRequest req = new W.WatchListRequest();
-				req.StartDate = new DateTime(2019, 10, 01);
-
-				var resp = await _watchList.GetWatchList(req,1000);
 				
-				return Results.Ok(resp.watchLists);
+				var resp = await _ebayService.GetWatchList(string.Empty);
+				
+				return Results.Ok(resp);
 
 			}
 			catch(Exception ex)
 			{
 				_logger.LogError(ex.Message);
-				ProblemDetails problemDetails = new ProblemDetails();
-			
 				return Results.Problem("Unable to get watchlist. Try again","CoolInstance",500,"MessageTimeOut","PoopType");
 			}
 		}

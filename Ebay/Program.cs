@@ -1,13 +1,13 @@
-using Ebay.MicroService.Consumers;
+using DS.Lib.Logger;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using DS.Ebay.MicroService.Infrastructure.Context;
+using Ebay.MicroService.Consumers;
+using DS.Ebay.MicroService.Infrastructure.Repositories;
 
-namespace Ebay
+
+namespace DS.Ebay
 {
 	public class Program
 	{
@@ -31,6 +31,7 @@ namespace Ebay
 				   {
 					   x.AddConsumer<MessageConsumer>();
 					   x.AddConsumer<WatchListConsumer>();
+					   x.AddConsumer<GiftCardConsumer>();
 
 					   x.UsingRabbitMq((context, cfg) =>
 					   {
@@ -45,9 +46,9 @@ namespace Ebay
 				   });
 					services.AddMassTransitHostedService();
 					//services.AddHostedService<Worker>();
-					services.AddSingleton<Ebay.Util.ILoggerManager>(new Ebay.Util.LoggerManager(logFile));
-					services.AddSingleton<Ebay.Context.Dapper.DapperContext>(new Ebay.Context.Dapper.DapperContext(ebayConn));
-					services.AddScoped<Ebay.DataLayer.IEbayRepository, Ebay.DataLayer.EbayRepository>();
+					services.AddSingleton<ILoggerManager>(new Log4NetManager(logFile));
+					services.AddSingleton<IDatabaseContext>(new EbayContext(ebayConn));
+					services.AddScoped<IEbayRepository, EbayRepository>();
 
 				});
 

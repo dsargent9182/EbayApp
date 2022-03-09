@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Ebay.MicroService;
 using Microsoft.Extensions.Logging;
-using Ebay.Util;
+using DS.Lib.Logger;
+using DS.Domain.Models;
 
 namespace Ebay.MicroService.Consumers
 {

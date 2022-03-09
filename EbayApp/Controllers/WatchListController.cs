@@ -1,26 +1,22 @@
-﻿using Ebay.Context.Dapper;
-using Ebay.DataLayer;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EbayApp.Controllers
+namespace DS.EbayApp.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
 	public class WatchListController : Controller
 	{
-		private IEbayRepository _ebayRepository;
+		//private IEbayRepository _ebayRepository;
 
-		public WatchListController(IEbayRepository ebayRepository)
+		public WatchListController()
 		{
-			_ebayRepository = ebayRepository;
 		}
 
 		[HttpGet]
 		public async Task<ActionResult> Get()
 		{
-			var list = await _ebayRepository.GetWatchListAsync(new DateTime(2019,10,01));
-			return View(list);
+			return View();
 		}
 
 		// GET: WatchListController/Details/5

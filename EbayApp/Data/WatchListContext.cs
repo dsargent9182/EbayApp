@@ -1,4 +1,4 @@
-﻿using Ebay.DataLayer;
+﻿using DS.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EbayApp.Data

@@ -1,3 +1,4 @@
+using DS.Domain.Models;
 using Ebay.MicroService;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
